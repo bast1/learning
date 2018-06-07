@@ -10,6 +10,7 @@ namespace KlasseMensch
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("TEST"); 
         }
     }
 }
