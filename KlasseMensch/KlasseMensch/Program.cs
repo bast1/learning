@@ -71,6 +71,8 @@ namespace KlasseMensch
 
             Console.WriteLine("Erna Gewicht nach Essen: " + erna.Gewicht);
 
+            erna.NehmeEineErfrischung();
+
         }
     }
 }
