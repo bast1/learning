@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,7 @@ namespace Lagerverwaltung
 
         public void mengeAendern(double mengeNeu)
         {
-                menge += mengeNeu;
+                menge = mengeNeu;
         }
 
         public int getPlatz()
@@ -61,10 +62,35 @@ namespace Lagerverwaltung
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Lagerverwaltung 0.0001 Alpha");
             Artikel Apfel = new Artikel(001, 2, "Apfel");
-            int Auswahl = Convert.ToInt32(Console.ReadLine());
-            
+            int ende = 0;
+
+            while (ende != 1)
+            {
+                Thread.Sleep(500);
+                Console.Clear();
+                Console.WriteLine("Lagerverwaltung 0.0001 Alpha\n");
+                Console.WriteLine("Nummer: {0} \nBezeichnung: {1} \nMenge: {2} \nPlatz {3}\n\n", Apfel.nummer, Apfel.bezeichnung, Apfel.Menge, Apfel.getPlatz());
+                Console.WriteLine("Hauptmenü: \n1. Menge ändern \n2. Platz ändern \n9. Beenden");
+                int Auswahl = Convert.ToInt32(Console.ReadLine());
+
+                switch (Auswahl)
+                {
+                    case 1:
+                        Console.WriteLine("\n\nNeue Menge: ");
+                        double Menge = Convert.ToInt32(Console.ReadLine());
+                        Apfel.mengeAendern(Menge);
+                        break;
+                    case 2:
+                        Apfel.platzAendern();
+                        Console.WriteLine("\n\nNeuer Platz geändert auf: {0}", Apfel.getPlatz());
+                        break;
+                    default:
+                        Console.WriteLine("Ende gewählt");
+                        ende = 1;
+                        break;
+                }
+            }
         }
     }
 }
